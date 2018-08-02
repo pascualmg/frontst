@@ -27,7 +27,7 @@ class App extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <img src={boy} className="App-logo" alt="logo" />
+                    <img src={'https://image.flaticon.com/icons/svg/55/55316.svg'} className="App-logo" alt="logo" />
                     <h1 className="App-title">oajax & basic component react example</h1>
                 </header>
                 <CursoGrid cursos={this.state.cursos} onClickCustomHandler={alerta}/>
@@ -35,6 +35,7 @@ class App extends Component {
         )
     }
 }
+
 //aquí todas las implementaaciones por el moemnto.
 const cursos = () => {
     const cursosUri = 'http://5.135.185.155:8888/cursos'
@@ -56,7 +57,8 @@ class CursoGrid extends Component {
 
 function Curso(props){
     return <div className={'grid-item-cursos'} onClick={props.onClickCustomHandler}>
-       <img src={'https://image.flaticon.com/icons/svg/831/831147.svg'} className="Avatar" alt="logo" />
+       <img src={'https://image.flaticon.com/icons/svg/753/753045.svg'} className="Avatar" alt="logo" />
+        <input type="image" className={'Avatar'} src= 'https://image.flaticon.com/icons/svg/831/831147.svg' />
         <div>{props.curso.datestart}</div>
         <div>{props.curso.hasexpired}</div>
         <div>{props.curso.id}</div>
@@ -72,9 +74,14 @@ function InscriptionGrid(props){
     return <div className="grid-container-inscritos">{AllElements}</div>
 }
 
+function iamClicked(){
+  //todo stub
+return false;
+}
 function Inscription(props){
+    const classNameWithJumpIfImClicked = "grid-item-inscritos".concat(  (iamClicked())?" jump":"")
 
-    return <div className="grid-item-inscritos jump">
+    return <div className={ classNameWithJumpIfImClicked } onClick={alerta}>
     {props.name}
        <img src={boy} className="Avatar" alt="logo" />
     </div>

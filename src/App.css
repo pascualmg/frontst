@@ -8,7 +8,7 @@
 }
 
 .App-header {
-  background-color: #222;
+  background-color: #002b36;
   height: 150px;
   padding: 20px;
   color: white;
@@ -26,14 +26,15 @@
 
 .grid-container-cursos {
 	  display: grid;
-	    grid-template-columns: auto auto ;
+    grid-auto-columns: auto;
+			/* grid-template-columns: auto auto ; */
 	      background-color: #002b36;
 	        padding: 10px;
 		border-collapse:collapse;
-		border:1px solid #000000;
+		border:1px solid #002b36;
 	}
 	.grid-item-cursos {
-		  background-color: #073642; 
+		  background-color: #b58900; 
 		    border: 1px solid rgba(0, 0, 0, 0.8);
 		      padding: 20px;
 			  text-align: center;
