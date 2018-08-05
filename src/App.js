@@ -76,15 +76,27 @@ function InscriptionGrid(props){
 
 function iamClicked(){
   //todo stub
-return false;
+return  false;
 }
+
 function Inscription(props){
     const classNameWithJumpIfImClicked = "grid-item-inscritos".concat(  (iamClicked())?" jump":"")
 
     return <div className={ classNameWithJumpIfImClicked } onClick={alerta}>
     {props.name}
        <img src={boy} className="Avatar" alt="logo" />
+       <PutoModal />
     </div>
+}
+
+
+function PutoModal(props){
+  return <div className="modal">
+    <div className="modal-content">
+    <div className="modal-close">X</div>   
+      {props.content}
+    </div>
+  </div>
 }
 
 export default App
