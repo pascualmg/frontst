@@ -1,14 +1,20 @@
 import React, { Component } from 'react'
+import './App.css'
 import { ajax } from 'rxjs/ajax'
 //import { map } from 'rxjs/operators';
 
+import USER_ROLES from './USER_ROLES.js'
 import logo from './logo.svg'
 import boy from './boy.svg'
-import './App.css'
+import paramita from './paramita.svg'
+import nicolas from './nicolas.svg'
 
+// function App(props) {return <PutoModal content={"cosa"} /> }
 
 class App extends Component {
     constructor(props) {
+      window.userRoles = USER_ROLES;
+      console.log(USER_ROLES)
         super(props)
         this.state = {
             error: null,
@@ -21,6 +27,8 @@ class App extends Component {
             (item) => {this.setState({cursos: item.response})},
             (error) => {this.setState({error: error})},
         )
+
+
     }
     render() {
         console.log('cursos', this.state.cursos)
@@ -84,19 +92,27 @@ function Inscription(props){
 
     return <div className={ classNameWithJumpIfImClicked } onClick={alerta}>
     {props.name}
-       <img src={boy} className="Avatar" alt="logo" />
-       <PutoModal />
+      <NicolasCage />
+       <PutoModal content={<div> y se le puede meter un elemento</div>}/>
     </div>
 }
 
+function NicolasCage() {
+       return <img src={nicolas} className="Avatar" alt="logo" />
+}
 
 function PutoModal(props){
-  return <div className="modal">
+  const style  = <style type="text/css"> 
+  </style>;
+
+  const modalHtml =  <div className="modal">
     <div className="modal-content">
     <div className="modal-close">X</div>   
-      {props.content}
+      contenido: {props.content}
     </div>
   </div>
+
+    return <div className="superContainer">{style}{modalHtml}</div>;
 }
 
 export default App
