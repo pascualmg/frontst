@@ -1,5 +1,5 @@
 {
-  "name": "rxjs-ajax",
+  "name": "frontst",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -15,5 +15,6 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "eslint": "^5.3.0"
   }
 }

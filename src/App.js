@@ -3,13 +3,11 @@ import './App.css'
 import { ajax } from 'rxjs/ajax'
 //import { map } from 'rxjs/operators';
 
-// import USER_ROLES from './USER_ROLES.js'
 // import logo from './logo.svg'
 // import boy from './boy.svg'
 // import paramita from './paramita.svg'
 import nicolas from './nicolas.svg'
 
-// function App(props) {return <PutoModal content={"cosa"} /> }
 
 class App extends Component {
     constructor (props) {
@@ -22,11 +20,10 @@ class App extends Component {
     }
 
     componentDidMount () {
-        cursos().subscribe(
+        cursosOajax().subscribe(
             (item) => {this.setState({cursos: item.response})},
             (error) => {this.setState({error: error})},
         )
-
     }
 
     render () {
@@ -44,7 +41,7 @@ class App extends Component {
 }
 
 //aquí todas las implementaaciones por el moemnto.
-const cursos = () => {
+const cursosOajax = () => {
     const cursosUri = 'http://5.135.185.155:8888/cursos'
     const simpleOajax$ = ajax(cursosUri)
     return simpleOajax$

@@ -1,74 +1,88 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+    animation: App-logo-spin infinite 20s linear;
+    height: 80px;
 }
 
 .App-header {
-  background-color: #002b36;
-  height: 150px;
-  padding: 20px;
-  color: white;
+    background-color: #002b36;
+    height: 150px;
+    padding: 20px;
+    color: white;
 }
+
 .Avatar {
-  height: 40px;
+    height: 40px;
 }
+
 .App-title {
-  font-size: 1.5em;
+    font-size: 1.5em;
 }
 
 .App-intro {
-  font-size: large;
+    font-size: large;
 }
 
 .grid-container-cursos {
-	  display: grid;
+    display: grid;
     grid-auto-columns: auto;
-			/* grid-template-columns: auto auto ; */
-	      background-color: #002b36;
-	        padding: 10px;
-		border-collapse:collapse;
-		border:1px solid #002b36;
-	}
-	.grid-item-cursos {
-		  background-color: #b58900; 
-		    border: 1px solid rgba(0, 0, 0, 0.8);
-		      padding: 20px;
-			  text-align: center;
-		  }
+    /* grid-template-columns: auto auto ; */
+    background-color: #002b36;
+    padding: 10px;
+    border-collapse: collapse;
+    border: 1px solid #002b36;
+}
+
+.grid-item-cursos {
+    background-color: #b58900;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    text-align: center;
+}
 
 .grid-container-inscritos {
-	  display: grid;
-	    grid-template-columns: auto auto ;
-	      background-color: #586e75;
-	        padding: 10px;
-		border-collapse:collapse;
-		border:1px solid #000000;
-	}
-	.grid-item-inscritos {
-			/* background-color: #6c71c4;  */
-		  background-color: #859900; 
-		    border: 1px solid rgba(0, 0, 0, 0.8);
-		      padding: 20px;
-			  text-align: center;
-		  }
+    display: grid;
+    grid-template-columns: auto auto;
+    background-color: #586e75;
+    padding: 10px;
+    border-collapse: collapse;
+    border: 1px solid #000000;
+}
 
-
+.grid-item-inscritos {
+    /* background-color: #6c71c4;  */
+    background-color: #859900;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    text-align: center;
+}
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
+
 @keyframes jump {
-  0%   {transform: translate3d(0,0,0) scale3d(1,1,1);}
-  40%  {transform: translate3d(0,30%,0) scale3d(.7,1.5,1);}
-  100% {transform: translate3d(0,100%,0) scale3d(1.5,.7,1);}
+    0% {
+        transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    }
+    40% {
+        transform: translate3d(0, 30%, 0) scale3d(.7, 1.5, 1);
+    }
+    100% {
+        transform: translate3d(0, 100%, 0) scale3d(1.5, .7, 1);
+    }
 }
+
 .jump {
-  transform-origin: 50% 50%;
-  animation: jump .5s linear alternate infinite;
+    transform-origin: 50% 50%;
+    animation: jump .5s linear alternate infinite;
 }
 
