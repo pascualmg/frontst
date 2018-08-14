@@ -15,6 +15,5 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "eslint": "^5.3.0"
   }
 }
