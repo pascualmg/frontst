@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import './App.css'
-import { ajax } from 'rxjs/ajax'
+import {ajax} from 'rxjs/ajax'
 //import { map } from 'rxjs/operators';
 
 // import logo from './logo.svg'
@@ -10,7 +10,7 @@ import nicolas from './nicolas.svg'
 
 
 class App extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props)
         this.state = {
             error: null,
@@ -19,14 +19,18 @@ class App extends Component {
         }
     }
 
-    componentDidMount () {
+    componentDidMount() {
         cursosOajax().subscribe(
-            (item) => {this.setState({cursos: item.response})},
-            (error) => {this.setState({error: error})},
+            (item) => {
+                this.setState({cursos: item.response})
+            },
+            (error) => {
+                this.setState({error: error})
+            },
         )
     }
 
-    render () {
+    render() {
         console.log('cursos', this.state.cursos)
         return (
             <div className="App">
@@ -47,18 +51,22 @@ const cursosOajax = () => {
     return simpleOajax$
 }
 
-function alerta (e) {console.log(e)}
+function alerta(e) {
+    console.log(e)
+}
 
 class CursoGrid extends Component {
-    render () {
+    render() {
         const allElements = this.props.cursos
         //.filter( (item)=> item.hasExpired !== 'true' )
-            .map((item) => {return <Curso key={item.id} curso={item} onClickCustomHandler={alerta}/>})
+            .map((item) => {
+                return <Curso key={item.id} curso={item} onClickCustomHandler={alerta}/>
+            })
         return <div className="grid-container-cursos"> {allElements} </div>
     }
 }
 
-function Curso (props) {
+function Curso(props) {
     return <div className={'grid-item-cursos'} onClick={props.onClickCustomHandler}>
         <img src={'https://image.flaticon.com/icons/svg/753/753045.svg'} className="Avatar" alt="logo"/>
         <input type="image" className={'Avatar'} src='https://image.flaticon.com/icons/svg/831/831147.svg'/>
@@ -71,43 +79,52 @@ function Curso (props) {
     </div>
 }
 
-function InscriptionGrid (props) {
+function InscriptionGrid(props) {
     const AllElements = props.inscriptions
         .map((item) => <Inscription key={item.name} name={item.name}/>)
     return <div className="grid-container-inscritos">{AllElements}</div>
 }
 
-function iamClicked () {
+function iamClicked() {
     //todo stub
     return false
 }
 
-function Inscription (props) {
+function Inscription(props) {
     const classNameWithJumpIfImClicked = 'grid-item-inscritos'.concat((iamClicked()) ? ' jump' : '')
-
     return <div className={classNameWithJumpIfImClicked} onClick={alerta}>
         {props.name}
         <NicolasCage/>
-        <PutoModal content={<div> y se le puede meter un elemento</div>}/>
+        <PutoModal open={false} id={props.name} content={<div> y se le puede meter un elemento</div>}/>
     </div>
 }
 
-function NicolasCage () {
+function NicolasCage() {
     return <img src={nicolas} className="Avatar" alt="logo"/>
 }
 
-function PutoModal (props) {
-    const style = <style type="text/css">
-    </style>
+function PutoModal(props) {
+    const uniqueModalId = 'modal-'.concat(props.id)
+    const blockOrNothing = props.open === true ? 'block' : ''
 
-    const modalHtml = <div className="modal">
-        <div className="modal-content">
-            <div className="modal-close">X</div>
-            contenido: {props.content}
+    /**
+     * procedure Handler del onClick en el botón cerrar del modal.
+     */
+    function closeSelfModal() {
+        const uniqueModalSelector = '#'.concat(uniqueModalId)
+        const self = document.querySelector(uniqueModalSelector)
+        console.log('cerrando modal', uniqueModalId)
+        self.style.display = ''
+    }
+
+    return (
+        <div className="modal" id={uniqueModalId} style={{display: blockOrNothing}}>
+            <div className="modal-content">
+                <div className="close" onClick={closeSelfModal}>X</div>
+                contenido: {props.content}
+            </div>
         </div>
-    </div>
-
-    return <div className="superContainer">{style}{modalHtml}</div>
+    )
 }
 
 export default App
