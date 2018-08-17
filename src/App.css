@@ -86,7 +86,7 @@
     animation: jump .5s linear alternate infinite;
 }
 
-/* The Modal (background) */
+/*@egion The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */

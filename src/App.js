@@ -1,12 +1,14 @@
 import React, {Component} from 'react'
 import './App.css'
 import {ajax} from 'rxjs/ajax'
+import tOolz from 'jstoolz'
+
 //import { map } from 'rxjs/operators';
 
 // import logo from './logo.svg'
 // import boy from './boy.svg'
 // import paramita from './paramita.svg'
-import nicolas from './nicolas.svg'
+import nicolas from './paramita.svg'
 
 
 class App extends Component {
@@ -39,6 +41,7 @@ class App extends Component {
                     <h1 className="App-title">oajax & basic component react example</h1>
                 </header>
                 <CursoGrid cursos={this.state.cursos} onClickCustomHandler={alerta}/>
+                <PutoModal open={true} content={<div>Esto va a molar animate pidgeon ...</div>} />
             </div>
         )
     }
@@ -104,7 +107,9 @@ function NicolasCage() {
 }
 
 function PutoModal(props) {
-    const uniqueModalId = 'modal-'.concat(props.id)
+
+    const id  = props.id || tOolz.generateRandomId('putomodal')
+    const uniqueModalId = 'modal-'.concat(id)
     const blockOrNothing = props.open === true ? 'block' : ''
 
     /**
