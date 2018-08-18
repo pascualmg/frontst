@@ -210,6 +210,11 @@ class GoogleLogin extends React.Component {
         }
     }
 
+    componentDidMount(){
+        tOolz.loadScript( 'https://apis.google.com/js/platform.js', function () {
+            console.log('script de google cargado.... y ahora que')
+        } )
+    }
     /**
      * todo: stub copypasted.
      * Callback ejecutado cuando el usuario se loggea correctamente.
@@ -238,7 +243,6 @@ class GoogleLogin extends React.Component {
                     <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com"/>
                 </div>
 
-                <script src="https://apis.google.com/js/platform.js" async defer />
                 <div className="g-signin2" data-onsuccess={this.onSignIn} data-theme="dark"/>
             </div>
         )
