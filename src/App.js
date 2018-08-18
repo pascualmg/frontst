@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import './App.css'
 import {ajax} from 'rxjs/ajax'
 import tOolz from 'jstoolz'
+import {css} from 'emotion'
 
 //import { map } from 'rxjs/operators';
 
@@ -41,7 +42,7 @@ class App extends Component {
                     <h1 className="App-title">oajax & basic component react example</h1>
                 </header>
                 <CursoGrid cursos={this.state.cursos} onClickCustomHandler={alerta}/>
-                <PutoModal open={true} content={<div>Esto va a molar animate pidgeon ...</div>} />
+                <PutoModal open={true} content={<div>Esto va a molar animate pidgeon ...</div>}/>
             </div>
         )
     }
@@ -98,7 +99,7 @@ function Inscription(props) {
     return <div className={classNameWithJumpIfImClicked} onClick={alerta}>
         {props.name}
         <NicolasCage/>
-        <PutoModal open={false} id={props.name} content={<div> y se le puede meter un elemento</div>}/>
+        <PutoModal open={true} id={props.name} content={<div> y se le puede meter un elemento</div>}/>
     </div>
 }
 
@@ -106,14 +107,15 @@ function NicolasCage() {
     return <img src={nicolas} className="Avatar" alt="logo"/>
 }
 
+
 function PutoModal(props) {
 
-    const id  = props.id || tOolz.generateRandomId('putomodal')
+    const id = props.id || tOolz.generateRandomId('putomodal')
     const uniqueModalId = 'modal-'.concat(id)
     const blockOrNothing = props.open === true ? 'block' : ''
 
     /**
-     * procedure Handler del onClick en el botón cerrar del modal.
+     * Cierra el modal
      */
     function closeSelfModal() {
         const uniqueModalSelector = '#'.concat(uniqueModalId)
@@ -122,11 +124,69 @@ function PutoModal(props) {
         self.style.display = ''
     }
 
+    const cssModal = css`
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,43,54); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+`
+    const cssCloseButton = css `/* The Close Button */
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+
+    :hover,
+    :focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+`
+    const cssModalContent = css`
+    -webkit-animation: appear 3s ease 0s normal ;
+    animation:         appear 3s ease 0s normal ;
+
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    @-webkit-keyframes appear {
+    0%{
+        opacity: 0;
+        -webkit-transform: scale3d(0.3, 0.3, 0.3);
+        transform: scale3d(0.3, 0.3, 0.3);
+    }
+    60%{
+        opacity: 1;
+        -webkit-transform: scale3d(1,1,1);
+        transform: scale3d(1,1,1);
+    }
+    }
+    @keyframes appear {
+    0%{
+        opacity: 0;
+        transform: scale3d(0.3, 0.3, 0.3);
+    }
+    60%{
+        opacity: 1;
+        transform: scale3d(1,1,1);
+    }
+    }
+`
     return (
-        <div className="modal" id={uniqueModalId} style={{display: blockOrNothing}}>
-            <div className="modal-content">
-                <div className="close" onClick={closeSelfModal}>X</div>
-                contenido: {props.content}
+        <div className={cssModal} id={uniqueModalId} style={{display: blockOrNothing}}>
+            <div className={cssModalContent}>
+                <div className={cssCloseButton} onClick={closeSelfModal}>X</div>
+                {props.content}
             </div>
         </div>
     )

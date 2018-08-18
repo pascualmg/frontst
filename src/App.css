@@ -86,65 +86,10 @@
     animation: jump .5s linear alternate infinite;
 }
 
-/*@egion The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
 
-/* Modal Content/Box */
-.modal-content {
-    -webkit-animation: appear 3s ease 0s normal ;
-    animation:         appear 3s ease 0s normal ;
 
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-}
 
-/* The Close Button */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
 
-@-webkit-keyframes appear {
-    0%{
-        opacity: 0;
-        -webkit-transform: scale3d(0.3, 0.3, 0.3);
-        transform: scale3d(0.3, 0.3, 0.3);
-    }
-    60%{
-        opacity: 1;
-        -webkit-transform: scale3d(1,1,1);
-        transform: scale3d(1,1,1);
-    }
-}
-@keyframes appear {
-    0%{
-        opacity: 0;
-        transform: scale3d(0.3, 0.3, 0.3);
-    }
-    60%{
-        opacity: 1;
-        transform: scale3d(1,1,1);
-    }
-}
+
+
+
