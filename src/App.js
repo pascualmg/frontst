@@ -41,6 +41,7 @@ class App extends Component {
                     <img src={'https://image.flaticon.com/icons/svg/55/55316.svg'} className="App-logo" alt="logo"/>
                     <h1 className="App-title">oajax & basic component react example</h1>
                 </header>
+                <GoogleLogin />
                 <CursoGrid cursos={this.state.cursos} onClickCustomHandler={alerta}/>
                 <PutoModal open={true} content={<div>Esto va a molar animate pidgeon ...</div>}/>
             </div>
@@ -99,7 +100,6 @@ function Inscription(props) {
     return <div className={classNameWithJumpIfImClicked} onClick={alerta}>
         {props.name}
         <NicolasCage/>
-        <PutoModal open={true} id={props.name} content={<div> y se le puede meter un elemento</div>}/>
     </div>
 }
 
@@ -192,4 +192,55 @@ function PutoModal(props) {
     )
 }
 
+/**
+ * Crea un componente que carga el script externo de google y se encarga del login.
+ *
+ * Se usa la plantilla de html localizada en
+ * @see https://developers.google.com/identity/sign-in/web/
+ *
+ * Para implementar la carga del script externo se toma como referencia:
+ * @see https://stackoverflow.com/questions/35854795/load-external-javascript-through-script-tag
+ */
+class GoogleLogin extends React.Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            loggedIn: false
+        }
+    }
+
+    /**
+     * todo: stub copypasted.
+     * Callback ejecutado cuando el usuario se loggea correctamente.
+     * @param googleUser {GoogleLogin}
+     */
+    static onSignIn(googleUser) {
+        this.setState({loggedIn:true})
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile()
+        console.log('ID: ' + profile.getId()) // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName())
+        console.log('Given Name: ' + profile.getGivenName())
+        console.log('Family Name: ' + profile.getFamilyName())
+        console.log('Image URL: ' + profile.getImageUrl())
+        console.log('Email: ' + profile.getEmail())
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token
+        console.log('ID Token: ' + id_token)
+    };
+    render() {
+        return (
+            <div className="google-login">
+                <div className='google-login-metas'>
+                    <meta name="google-signin-scope" content="profile email"/>
+                    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com"/>
+                </div>
+
+                <script src="https://apis.google.com/js/platform.js" async defer />
+                <div className="g-signin2" data-onsuccess={this.onSignIn} data-theme="dark"/>
+            </div>
+        )
+    }
+}
 export default App
