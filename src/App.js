@@ -23,7 +23,7 @@ class App extends Component {
     }
 
     componentDidMount() {
-        cursosOajax().subscribe(
+        cursosOajax$.subscribe(
             (item) => {
                 this.setState({cursos: item.response})
             },
@@ -55,7 +55,8 @@ const cursosOajax = () => {
     const simpleOajax$ = ajax(cursosUri)
     return simpleOajax$
 }
-
+const getOajaxSimpleGet = (uri) => ajax(uri)
+const cursosOajax$ = getOajaxSimpleGet('http://5.135.185.155:8888/cursos')
 function alerta(e) {
     console.log(e)
 }
