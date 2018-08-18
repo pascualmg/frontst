@@ -11,7 +11,6 @@ import {css} from 'emotion'
 // import paramita from './paramita.svg'
 import nicolas from './paramita.svg'
 
-const idGoogleClientSandraTraining = '1054646766627-8mvdin87ncj102qqr8kv890p7nia7oej.apps.googleusercontent.com'
 const googleInfo = {
     'web': {
         'client_id': '1054646766627-8mvdin87ncj102qqr8kv890p7nia7oej.apps.googleusercontent.com',
@@ -237,7 +236,7 @@ class GoogleLogin extends React.Component {
      * @param googleUser {GoogleLogin}
      */
     static onSignIn(googleUser) {
-        console.log('Logeado en google!!!!', );//TODO: borrame.
+        console.log('Logeado en google!!!!', )
         this.setState({loggedIn: true})
         // Useful data for your client-side scripts:
         var profile = googleUser.getBasicProfile()
@@ -259,7 +258,7 @@ class GoogleLogin extends React.Component {
                 <div className='google-login-metas'>
                     <meta name="google-signin-client_id" content={this.props.clientId}/>
                 </div>
-                <div className="g-signin2" data-onsuccess={this.onSignIn} data-theme="dark"/>
+                <div className="g-signin2" data-onsuccess={GoogleLogin.onSignIn} data-theme="dark"/>
             </div>
         )
     }
