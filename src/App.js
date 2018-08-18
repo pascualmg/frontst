@@ -11,6 +11,17 @@ import {css} from 'emotion'
 // import paramita from './paramita.svg'
 import nicolas from './paramita.svg'
 
+const idGoogleClientSandraTraining = '1054646766627-8mvdin87ncj102qqr8kv890p7nia7oej.apps.googleusercontent.com'
+const googleInfo = {
+    'web': {
+        'client_id': '1054646766627-8mvdin87ncj102qqr8kv890p7nia7oej.apps.googleusercontent.com',
+        'project_id': 'winter-monolith-213714',
+        'auth_uri': 'https://accounts.google.com/o/oauth2/auth',
+        'token_uri': 'https://www.googleapis.com/oauth2/v3/token',
+        'auth_provider_x509_cert_url': 'https://www.googleapis.com/oauth2/v1/certs',
+        'client_secret': 'mbD_oNsaWuLCgVQUSXzQJW22'
+    }
+}
 
 class App extends Component {
     constructor(props) {
@@ -41,9 +52,9 @@ class App extends Component {
                     <img src={'https://image.flaticon.com/icons/svg/55/55316.svg'} className="App-logo" alt="logo"/>
                     <h1 className="App-title">oajax & basic component react example</h1>
                 </header>
-                <GoogleLogin />
                 <CursoGrid cursos={this.state.cursos} onClickCustomHandler={alerta}/>
-                <PutoModal open={true} content={<div>Esto va a molar animate pidgeon ...</div>}/>
+                <PutoModal id='modal-google-login' open={true}
+                    content={<GoogleLogin clientId={googleInfo.web.client_id}/>}/>
             </div>
         )
     }
@@ -57,6 +68,7 @@ const cursosOajax = () => {
 }
 const getOajaxSimpleGet = (uri) => ajax(uri)
 const cursosOajax$ = getOajaxSimpleGet('http://5.135.185.155:8888/cursos')
+
 function alerta(e) {
     console.log(e)
 }
@@ -201,27 +213,32 @@ function PutoModal(props) {
  *
  * Para implementar la carga del script externo se toma como referencia:
  * @see https://stackoverflow.com/questions/35854795/load-external-javascript-through-script-tag
+ *
+ * Para ver como obtener el id de aplicación de google.
+ * @see https://stackoverflow.com/questions/17166848/invalid-client-in-google-oauth2
  */
 class GoogleLogin extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
             loggedIn: false
         }
     }
 
-    componentDidMount(){
-        tOolz.loadScript( 'https://apis.google.com/js/platform.js', function () {
+    componentDidMount() {
+        tOolz.loadScript('https://apis.google.com/js/platform.js', function () {
             console.log('script de google cargado.... y ahora que')
-        } )
+        })
     }
+
     /**
      * todo: stub copypasted.
      * Callback ejecutado cuando el usuario se loggea correctamente.
      * @param googleUser {GoogleLogin}
      */
     static onSignIn(googleUser) {
-        this.setState({loggedIn:true})
+        console.log('Logeado en google!!!!', );//TODO: borrame.
+        this.setState({loggedIn: true})
         // Useful data for your client-side scripts:
         var profile = googleUser.getBasicProfile()
         console.log('ID: ' + profile.getId()) // Don't send this directly to your server!
@@ -235,17 +252,17 @@ class GoogleLogin extends React.Component {
         var id_token = googleUser.getAuthResponse().id_token
         console.log('ID Token: ' + id_token)
     };
+
     render() {
         return (
             <div className="google-login">
                 <div className='google-login-metas'>
-                    <meta name="google-signin-scope" content="profile email"/>
-                    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com"/>
+                    <meta name="google-signin-client_id" content={this.props.clientId}/>
                 </div>
-
                 <div className="g-signin2" data-onsuccess={this.onSignIn} data-theme="dark"/>
             </div>
         )
     }
 }
+
 export default App
