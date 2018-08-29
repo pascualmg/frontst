@@ -86,6 +86,7 @@ class CursoGrid extends Component {
 function Curso(props) {
     return <div className={'grid-item-cursos'} onClick={props.onClickCustomHandler}>
         <img src={'https://image.flaticon.com/icons/svg/753/753045.svg'} className="Avatar" alt="logo"/>
+        <img src={'https://vignette.wikia.nocookie.net/chrono/images/1/1d/Magus-anim.gif/revision/latest?cb=20100609133535'} className="Avatar" alt="logo"/>
         <input type="image" className={'Avatar'} src='https://image.flaticon.com/icons/svg/831/831147.svg'/>
         <div>{props.curso.datestart}</div>
         <div>{props.curso.hasexpired}</div>
